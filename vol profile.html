@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .opportunity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+       
+        .opportunity-details {
+            flex: 1;
+        }
+        .opportunity .btn {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Volunteer Profile</h1>
+        <form id="volunteerForm">
+            <div class="form-group">
+                <label for="volunteer-name">Name</label>
+                <input type="text" id="volunteer-name" name="volunteer-name" required>
+            </div>
+            <div class="form-group">
+                <label for="volunteer-contact">Contact Information</label>
+                <input type="text" id="volunteer-contact" name="volunteer-contact" required>
+            </div>
+            <div class="form-group">
+                <label for="volunteer-location">Location</label>
+                <input type="text" id="volunteer-location" name="volunteer-location" required>
+            </div>
+            <div class="form-group">
+                <label for="volunteer-skills">Skills</label>
+                <textarea id="volunteer-skills" name="volunteer-skills" rows="4"></textarea>
+            </div>
+            <button type="button" class="btn" onclick="saveVolunteerProfile()">Save Profile</button>
+        </form>
+        
+        <div class="volunteer-opportunities">
+            <h2>Volunteer Opportunities</h2>
+            <div class="opportunity">
+        
+                <div class="opportunity-details">
+                    <strong>Sample Opportunity Title</strong>
+                    <p>Sample opportunity description.</p>
+                </div>
+                <button class="btn" onclick="applyForOpportunity(this)">Apply</button>
+            </div>
+            <!-- Additional opportunities would be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        function saveVolunteerProfile() {
+            // Implement your save profile functionality here
+            alert("Profile saved!");
+        }
+
+        function applyForOpportunity(button) {
+            const opportunity = button.closest('.opportunity');
+            button.textContent = 'Applied';
+            button.style.backgroundColor = '#28a745';
+            button.style.cursor = 'default';
+            button.disabled = true;
+            alert(`You have applied for the opportunity: ${opportunity.querySelector('strong').textContent}`);
+        }
+    </script>
+</body>
+</html>

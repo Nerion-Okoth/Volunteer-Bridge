@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .top-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .top-left img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+        .top-left h1 {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            z-index: 1;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .signin .btn:hover {
+            background: #0056b3;
+        }
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .signup {
+            margin-top: 20px;
+        }
+        .signup .btn {
+            background: #28a745;
+        }
+        .signup .btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-left">
+        <img src="Volunteer bridge image.jpg" alt="Logo">
+        <h1>Volunteer Bridge</h1>
+    </div>
+    <div class="container">
+        <h2>Welcome</h2>
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <a href="User profile.html">
+                <button type="button">Log in</button><br>
+            </a><br>
+            <a href="Forget pas.html">Forgot Password?</a><br>
+        </form>
+        <div class="signup">
+            <p>New user?</p>
+            <a href="Create acc.html">
+                <button type="submit" class="btn">Sign Up</button>
+                </a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

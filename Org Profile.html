@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .profile-pic {
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .volunteer-opportunities,
+        .applications {
+            margin-top: 30px;
+        }
+        .opportunity,
+        .application {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+      
+        .opportunity-details,
+        .application-details {
+            flex: 1;
+        }
+        .application .btn {
+            margin-left: 15px;
+            background: #28a745;
+        }
+        .application .btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Organization Profile</h1>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="profile-pic">Profile Picture</label>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*" onchange="loadProfilePic(event)">
+            </div>
+            <div class="profile-pic" id="profilePicPreview" style="background: url('local/path/to/default/profile-pic.jpg') center center/cover;"></div>
+            <div class="form-group">
+                <label for="org-name">Organization Name</label>
+                <input type="text" id="org-name" name="org-name" required>
+            </div>
+            <div class="form-group">
+                <label for="org-description">Description</label>
+                <textarea id="org-description" name="org-description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="org-contact">Contact Information</label>
+                <input type="text" id="org-contact" name="org-contact" required>
+            </div>
+            <button type="button" class="btn" onclick="saveProfile()">Save Profile</button>
+        </form>
+        
+        <div class="volunteer-opportunities">
+            <h2>Volunteer Opportunities</h2>
+            <form id="opportunityForm">
+                <div class="form-group">
+                    <label for="opportunity-title">Title</label>
+                    <input type="text" id="opportunity-title" name="opportunity-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="opportunity-description">Description</label>
+                    <textarea id="opportunity-description" name="opportunity-description" rows="3" required></textarea>
+                </div>
+            
+                <button type="button" class="btn" onclick="addOpportunity()">Add Opportunity</button>
+            </form>
+            <div id="opportunityList"></div>
+        </div>
+        
+        <div class="applications">
+            <h2>Applications</h2>
+            <div class="application">
+                <img src="local/path/to/default/applicant-pic.jpg" alt="Applicant">
+                <div class="application-details">
+                    <strong>Applicant Name</strong>
+                    <p>Application details and message.</p>
+                </div>
+                <button class="btn" onclick="selectApplication(this)">Select</button>
+            </div>
+            <!-- Additional applications would be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        function loadProfilePic(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('profilePicPreview');
+                output.style.background = `url(${reader.result}) center center/cover`;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function loadOpportunityPic(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.createElement('img');
+                output.src = reader.result;
+                output.style.width = '50px';
+                output.style.height = '50px';
+                output.style.borderRadius = '5px';
+                output.style.marginRight = '15px';
+                document.getElementById('opportunityPicPreview').appendChild(output);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function saveProfile() {
+            // Implement your save profile functionality here
+            alert("Profile saved!");
+        }
+
+        function addOpportunity() {
+            const title = document.getElementById('opportunity-title').value;
+            const description = document.getElementById('opportunity-description').value;
+            const pic = document.getElementById('opportunity-pic').files[0];
+
+            const reader = new FileReader();
+            reader.onload = function() {
+                const opportunityDiv = document.createElement('div');
+                opportunityDiv.className = 'opportunity';
+                opportunityDiv.innerHTML = `
+                    <img src="${reader.result}" alt="Opportunity">
+                    <div class="opportunity-details">
+                        <strong>${title}</strong>
+                        <p>${description}</p>
+                    </div>
+                `;
+                document.getElementById('opportunityList').appendChild(opportunityDiv);
+            };
+            if (pic) {
+                reader.readAsDataURL(pic);
+            } else {
+                alert("Please upload an image for the opportunity.");
+            }
+        }
+
+        function selectApplication(button) {
+            const application = button.closest('.application');
+            application.style.backgroundColor = '#d4edda';
+            button.textContent = 'Selected';
+            button.style.backgroundColor = '#218838';
+            button.style.cursor = 'default';
+            button.disabled = true;
+        }
+    </script>
+</body>
+</html>
+
